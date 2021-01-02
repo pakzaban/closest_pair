@@ -55,7 +55,6 @@ def closest_pair_recursion(Px, Py):
     for pair in [p1q1, p2q2, p3q3]:
         if get_distance(pair) < get_distance(closest_pair):
             closest_pair = pair
-
     return closest_pair
 
 def closest_split_pair(Px, Py, delta):
@@ -68,19 +67,19 @@ def closest_split_pair(Px, Py, delta):
     :return: closest_split_pair only if it's distance smaller than the non_split pairs
     """
     median_x = Px[len(Px)//2 -1].x
-    left_x_limit = median_x - delta/2
-    right_x_limit = median_x + delta/2
+    left_x_limit = median_x - delta
+    right_x_limit = median_x + delta
     S = [point for point in Px if point.x > left_x_limit and point.x < right_x_limit]
     Sy = [point for point in Py if point in S]
 
     min_distance = delta
     closest_pair = None
-    # for i in range(1, len(Sy) - 2):
-    #     for j in range(1, min(7, len(Sy) - i)):
-    #         pair = (Sy[i], Sy[i+j])
-    for i in range(len(Sy) -1):
-        for j in range(i + 1,len(Sy)):
-            pair = (Sy[i], Sy[j])
+    for i in range(1, len(Sy) - 1):
+        for j in range(1, min(7, len(Sy) - i)):
+            pair = (Sy[i], Sy[i+j])
+    # for i in range(len(Sy) -1):
+    #     for j in range(i + 1,len(Sy)):
+    #         pair = (Sy[i], Sy[j])
             if get_distance(pair) < min_distance:
                 closest_pair = pair
     # print(f"closest pair: {closest_pair}")
@@ -113,7 +112,7 @@ def print_list(l):
 
 # _______________________________________________________
 # Tests
-points = list(set(Point.make_random_points(10)))
+points = list(set(Point.make_random_points(100)))
 print_list(points)
 print('________________________________________________')
 print_list (find_closest_pair(points))
