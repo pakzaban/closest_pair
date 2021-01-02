@@ -8,7 +8,6 @@ def merge(list1, list2, x):
     :param x: Boolean: if true, sorts by x; else, by y.
     :return: merged ordered list of points by x or y coordinate
     """
-
     result = []
     while len(list1) > 0 and len(list2) > 0:
         if x:
@@ -27,11 +26,8 @@ def merge(list1, list2, x):
             else:
                 result.append(list1.pop(0))
                 result.append(list2.pop(0))
-
-
     result = result + list1 + list2
     return result
-
 
 def merge_sort_points_by(unordered_list, x=True):
     """
